@@ -1,0 +1,8 @@
+<div class="row bg-dark text-white text-center font-weight-bold">
+    <div class="col-3 border">Name</div>
+    <div class="col-3 border">Surname</div>
+    <div class="col-3 border">Email</div>
+    <div class="col-3 border">Role</div>
+</div>
+<app-users-list-row *ngFor="let user of users" [user]="user"></app-users-list-row>
+

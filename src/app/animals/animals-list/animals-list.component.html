@@ -1,0 +1,7 @@
+<div class="row bg-dark text-white text-center font-weight-bold">
+    <div class="col-4 border">Name</div>
+    <div class="col-4 border">Species</div>
+    <div class="col-4 border">Chip Number</div>
+</div>
+<app-animals-list-row *ngFor="let animal of animals" [animal]="animal">
+</app-animals-list-row>

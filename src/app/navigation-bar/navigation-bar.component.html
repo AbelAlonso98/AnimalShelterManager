@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Animal Shelter</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/animals" *ngIf="isLoggedIn">Animals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/animals/add" *ngIf="isLoggedIn">Add Animal</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login" *ngIf="!isLoggedIn">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login/register" *ngIf="!isLoggedIn">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Hi {{name}}!</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login/users" *ngIf="isLoggedIn && role=='admin'">Users</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <button (click)="onClickLogout()" class="btn btn-outline-danger" >Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

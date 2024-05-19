@@ -1,0 +1,9 @@
+/* Estilo adicional para hacer los div cuadrados */
+.square {
+    position: relative;
+}
+.square:before {
+    content: "";
+	float: left;
+	padding-top: 100%;
+}
