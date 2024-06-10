@@ -1,7 +1,124 @@
-<div class="row bg-dark text-white text-center font-weight-bold">
-    <div class="col-4 border">Name</div>
-    <div class="col-4 border">Species</div>
-    <div class="col-4 border">Chip Number</div>
+<div class="col-6 d-flex justify-content-end align-items-center ms-auto">
+    <a routerLink="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-box-arrow-left"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
+            <path fill-rule="evenodd"
+                d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+        </svg>
+    </a>
 </div>
-<app-animals-list-row *ngFor="let animal of animals" [animal]="animal">
-</app-animals-list-row>
+<h1 class="text-center mb-5">Animals List</h1>
+
+<div class="row bg-dark text-white text-center font-weight-bold py-3">
+    <div class="col-4 border-end">Name</div>
+    <div class="col-4 border-end">Species</div>
+    <div class="col-4">Chip Number</div>
+</div>
+
+<ng-container *ngFor="let animal of animals; let i = index">
+    <div class="row py-3 border" role="button" (click)="toggleCollapse(i)" style="cursor: pointer;">
+        <div class="col-4 text-center border-end">{{animal.name}}</div>
+        <div class="col-4 text-center border-end">{{animal.species}}</div>
+        <div class="col-4 text-center">{{animal.chip_number}}</div>
+    </div>
+    <div class="row" *ngIf="!isCollapsed[i]" class="card mt-4">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-6 ps-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Passport:</strong> {{animal.passport}}</li>
+                        <li class="list-group-item"><strong>Kennel:</strong> {{animal.kennel}}</li>
+                        <li class="list-group-item"><strong>Neutered:</strong> {{animal.neutered ? 'Yes' : 'No'}}</li>
+                        <li class="list-group-item"><strong>PPP:</strong> {{animal.ppp ? 'Yes' : 'No'}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Birth date:</strong> {{animal.birth_date | date}}</li>
+                        <li class="list-group-item"><strong>Entry date:</strong> {{animal.entry_date | date}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center gap-2 mb-4">
+
+                <button class="btn btn-info" [routerLink]="['./add', animal.id]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#ffffff"
+                            d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6.525q.5 0 .75.313t.25.687t-.262.688T11.5 5H5v14h14v-6.525q0-.5.313-.75t.687-.25t.688.25t.312.75V19q0 .825-.587 1.413T19 21zm4-7v-2.425q0-.4.15-.763t.425-.637l8.6-8.6q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4t-.137.738t-.438.662l-8.6 8.6q-.275.275-.637.438t-.763.162H10q-.425 0-.712-.288T9 14m12.025-9.6l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z" />
+                    </svg>
+                    Edit
+                </button>
+                <button class="btn btn-info" [routerLink]="['./adoption', animal.id]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1664 1536">
+                        <path fill="#ffffff"
+                            d="M780 344q0 60-19 113.5T698 550t-105 39q-76 0-138-57.5T363 396t-30-151q0-60 19-113.5T415 39T520 0q77 0 138.5 57.5t91.5 135T780 344M438 827q0 80-42 139t-119 59q-76 0-141.5-55.5T35 836T0 684q0-80 42-139.5T161 485q76 0 141.5 55.5t100.5 134T438 827m394-27q118 0 255 97.5t229 237t92 254.5q0 46-17 76.5t-48.5 45t-64.5 20t-76 5.5q-68 0-187.5-45T832 1446q-66 0-192.5 44.5T439 1535q-183 0-183-146q0-86 56-191.5T451.5 1005T639 859t193-59m239-211q-61 0-105-39t-63-92.5T884 344q0-74 30-151.5t91.5-135T1144 0q61 0 105 39t63 92.5t19 113.5q0 73-30 151t-92 135.5t-138 57.5m432-104q77 0 119 59.5t42 139.5q0 74-35 152t-100.5 133.5T1387 1025q-77 0-119-59t-42-139q0-74 35-152.5t100.5-134T1503 485" />
+                    </svg>
+                    Adoption
+                </button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#vetModal">
+                    <img src="assets/img/vet-icon.png" alt="Animals Icon" class="img-fluid btn-icon">
+                    Veterinary
+                </button>
+                <button class="btn btn-danger" (click)="onClickDelete(animal)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="#ffffff"
+                            d="m9.4 16.5l2.6-2.6l2.6 2.6l1.4-1.4l-2.6-2.6L16 9.9l-1.4-1.4l-2.6 2.6l-2.6-2.6L8 9.9l2.6 2.6L8 15.1zM7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21z" />
+                    </svg>
+                    Delete
+                </button>
+            </div>
+
+        </div>
+    </div>
+</ng-container>
+<div class="row justify-content-center mt-4">
+    <div class="col-12">
+        <a routerLink="/animals/add" class="btn btn-outline-info border border-info w-100">
+            Add Animal
+        </a>
+    </div>
+</div>
+
+<div id="deleteToast" #deleteToast class="toast align-items-center" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-body">
+        Deleted successfully.
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="vetModal" tabindex="-1" aria-labelledby="vetModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="vetModalLabel">Veterinary</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs" id="vetTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="desparasitate-tab" data-bs-toggle="tab" href="#desparasitate"
+                            role="tab" aria-controls="desparasitate" aria-selected="true">Desparasitate</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="vaccine-tab" data-bs-toggle="tab" href="#vaccine" role="tab"
+                            aria-controls="vaccine" aria-selected="false">Vaccine</a>
+                    </li>
+                </ul>
+                <div class="tab-content mt-4" id="vetTabContent">
+                    <div class="tab-pane fade show active" id="desparasitate" role="tabpanel"
+                        aria-labelledby="desparasitate-tab">
+                        <h6>Desparasitate Section</h6>
+                        <p>Here you can manage desparasitate tasks.</p>
+                    </div>
+                    <div class="tab-pane fade" id="vaccine" role="tabpanel" aria-labelledby="vaccine-tab">
+                        <h6>Vaccine Section</h6>
+                        <p>Here you can manage vaccination tasks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

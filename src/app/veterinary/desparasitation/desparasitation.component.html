@@ -1,0 +1,20 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Animal:</label>
+        <select class="form-select" data-live-search="true" formControlName="animal">
+            <option *ngFor="let animal of animals" [ngValue]="animal">{{ animal.chip_number }} -
+                {{animal.name}}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="animal">Desparasitation Type:</label>
+        <select class="form-select" data-live-search="true" formControlName="desparasitationType">
+            <option *ngFor="let type of desparasitationType" [value]="type">{{ type }}</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Desparasitation Date</label>
+        <input type="date" class="form-control" formControlName="desparasitationDate">
+    </div>
+    <input type="submit" value="Desparasitate" class="btn btn-info">
+</form>

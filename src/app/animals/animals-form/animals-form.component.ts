@@ -16,14 +16,30 @@ export class AnimalsFormComponent {
 
   formulario: FormGroup;
   animalID: string = "";
-  action: string = "Send";
-  animal: Animal = { 'name': "", 'species': "", 'chip_number': "" }
+  action: string = "Create";
+  animal: Animal = {
+    name: "",
+    species: "",
+    chip_number: "",
+    kennel: '',
+    birth_date: new Date(),
+    entry_date: new Date(),
+    passport: '',
+    neutered: false,
+    ppp: false
+  }
 
   constructor(private animalsService: AnimalsService, private router: Router, private route: ActivatedRoute) {
     this.formulario = new FormGroup({
       name: new FormControl(),
       species: new FormControl(),
       chip_number: new FormControl(),
+      kennel: new FormControl(),
+      birth_date: new FormControl(),
+      entry_date: new FormControl(),
+      passport: new FormControl(),
+      neutered: new FormControl(),
+      ppp: new FormControl(),
 
     })
   }
@@ -42,7 +58,13 @@ export class AnimalsFormComponent {
         this.formulario.patchValue({
           name: this.animal.name,
           species: this.animal.species,
-          chip_number: this.animal.chip_number
+          chip_number: this.animal.chip_number,
+          passport: this.animal.passport,
+          birth_date: this.animal.birth_date,
+          entry_date: this.animal.entry_date,
+          kennel: this.animal.kennel,
+          neutered: this.animal.neutered,
+          ppp: this.animal.ppp
         })
 
       }).catch(error => {

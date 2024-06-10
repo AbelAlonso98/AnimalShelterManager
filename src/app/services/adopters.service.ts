@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { Firestore, collectionData } from '@angular/fire/firestore';
 import { Adopter } from '../models/adopter';
 import { addDoc, collection, doc, setDoc, getDoc } from 'firebase/firestore';
 import { Animal } from '../models/animals';
+import { Observable } from 'rxjs';
+import { Adoption } from '../models/adoption';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +39,10 @@ export class AdoptersService {
         })
       }
     })
+  }
+
+  getAdoptions(): Observable<Adoption[]> {
+    const adoptionRef = collection(this.firestore, 'adoptions');
+    return collectionData(adoptionRef, { idField: 'id' }) as Observable<Adoption[]>
   }
 }

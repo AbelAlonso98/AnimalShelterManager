@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnimalsListComponent } from './animals-list/animals-list.component';
 import { AnimalsFormComponent } from './animals-form/animals-form.component';
 import { AdoptionFormComponent } from './adoption-form/adoption-form.component';
+import { AdoptionListComponent } from './adoption-list/adoption-list.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
   {path: 'selectAnimal', component: AnimalsListComponent},
   
   {path: 'add/:id', component: AnimalsFormComponent},
+
+  {path: 'adoption', component: AdoptionListComponent},
 
   {path: 'adoption/:id', component: AdoptionFormComponent}
 ];

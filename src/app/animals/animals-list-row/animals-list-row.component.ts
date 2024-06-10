@@ -10,9 +10,18 @@ import { AnimalsService } from 'src/app/services/animals.service';
 })
 export class AnimalsListRowComponent {
 
-  @Input() animal: Animal = { name: "DefaultName", species: "DefaultSpecies", chip_number: "0000" }
+  @Input() animal: Animal = {
+    name: "DefaultName", species: "DefaultSpecies", chip_number: "0000",
+    kennel: '',
+    birth_date: new Date(),
+    entry_date: new Date(),
+    passport: '',
+    neutered: false,
+    ppp: false
+  }
 
   isHovered: boolean = false;
+  isCollapsed: boolean = true;
   select: boolean = false;
 
   constructor(private animalService: AnimalsService, private router: Router) { 
@@ -41,6 +50,7 @@ export class AnimalsListRowComponent {
 
   onClickAction(){
     console.log(this.router.url)
+    this.isCollapsed = !this.isCollapsed
   }
 
 }

@@ -1,0 +1,15 @@
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  border-radius: 50%;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.icon-wrapper:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.btn-icon {
+  height: 25px;
+}

@@ -6,12 +6,14 @@ import { VetMenuComponent } from './vet-menu/vet-menu.component';
 import { VaccineComponent } from './vaccine/vaccine.component';
 import { AnimalsModule } from '../animals/animals.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DesparasitationComponent } from './desparasitation/desparasitation.component';
 
 
 @NgModule({
   declarations: [
     VetMenuComponent,
-    VaccineComponent
+    VaccineComponent,
+    DesparasitationComponent
   ],
   imports: [
     CommonModule,

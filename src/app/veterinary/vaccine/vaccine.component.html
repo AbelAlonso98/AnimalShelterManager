@@ -2,12 +2,12 @@
     <div class="mb-3">
         <label class="form-label">Animal:</label>
         <select class="form-select" data-live-search="true" formControlName="animal">
-            <option *ngFor="let animal of animals" [value]="animal">{{ animal.chip_number }} -
+            <option *ngFor="let animal of animals" [ngValue]="animal">{{ animal.chip_number }} -
                 {{animal.name}}</option>
         </select>
     </div>
     <div class="mb-3">
-        <label for="animal">Type:</label>
+        <label for="animal">Vaccine Type:</label>
         <select class="form-select" data-live-search="true" formControlName="vaccineType">
             <option *ngFor="let type of vaccineTypes" [value]="type">{{ type }}</option>
         </select>
