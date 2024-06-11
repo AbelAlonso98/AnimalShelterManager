@@ -12,7 +12,7 @@
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" routerLink="/animals">Animals</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
+        <li class="nav-item" *ngIf="isLoggedIn && role!='veterinario'">
           <a class="nav-link" routerLink="/animals/add">Add Animal</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
@@ -25,9 +25,9 @@
           <a class="nav-link" routerLink="/login/users">Users</a>
         </li>
         <div class="d-flex justify-content-center align-items-center ms-auto">
-          <li class="nav-item ms-auto" *ngIf="isLoggedIn">
+          <!-- <li class="nav-item ms-auto" *ngIf="isLoggedIn">
             <a class="nav-link">Hi {{name}}!</a>
-          </li>
+          </li> -->
           <li class="nav-item" *ngIf="isLoggedIn">
             <button (click)="onClickLogout()" class="btn btn-outline-danger">Logout</button>
           </li>

@@ -9,7 +9,7 @@
                 <span class="text-info fw-bold h4 mt-3">Animals</span>
             </div>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="role!='veterinario'">
             <div class="col d-flex flex-column align-items-center">
                 <button class="btn btn-warning btn-lg w-100 h-100 hover-effect" routerLink="/animals/add">
                     <img src="assets/img/add-icon.png" alt="Animals Icon" class="img-fluid btn-icon">
@@ -17,7 +17,7 @@
                 <span class="text-warning fw-bold h4 mt-3">New Animal</span>
             </div>
         </div>
-        <div class="col">
+        <div class="col" *ngIf="role=='admin' || role=='veterinario'">
             <div class="col d-flex flex-column align-items-center">
                 <button class="btn btn-success btn-lg w-100 h-100 hover-effect" routerLink="/veterinary">
                     <img src="assets/img/vet-icon.png" alt="Animals Icon" class="img-fluid btn-icon">

@@ -12,17 +12,26 @@
 <h1>{{action}} Animal</h1>
 <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label">Name*</label>
         <input type="text" class="form-control" formControlName="name">
+        <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched" class="text-danger">
+            Name is required.
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Species</label>
+        <label class="form-label">Species*</label>
         <input type="text" class="form-control" formControlName="species">
+        <div *ngIf="formulario.get('species')?.invalid && formulario.get('species')?.touched" class="text-danger">
+            Species is required.
+        </div>
     </div>
     <div class="mb-3 row">
         <div class="mb-3 col-6">
-            <label class="form-label">Chip Number</label>
+            <label class="form-label">Chip Number*</label>
             <input type="text" class="form-control" formControlName="chip_number">
+            <div *ngIf="formulario.get('chip_number')?.invalid && formulario.get('chip_number')?.touched" class="text-danger">
+                Chip number is required.
+            </div>
         </div>
         <div class="mb-3 col-6">
             <label class="form-label">Passport Number</label>
@@ -31,12 +40,18 @@
     </div>
     <div class="mb3 row">
         <div class="mb-3 col-6">
-            <label class="form-label">Birth Date</label>
+            <label class="form-label">Birth Date*</label>
             <input type="date" class="form-control" formControlName="birth_date">
+            <div *ngIf="formulario.get('birth_date')?.invalid && formulario.get('birth_date')?.touched" class="text-danger">
+                Birt date is required.
+            </div>
         </div>
         <div class="mb-3 col-6">
-            <label class="form-label">Entry date</label>
+            <label class="form-label">Entry date*</label>
             <input type="date" class="form-control" formControlName="entry_date">
+            <div *ngIf="formulario.get('entry_date')?.invalid && formulario.get('entry_date')?.touched" class="text-danger">
+                Entry date is required.
+            </div>
         </div>
     </div>
     <div class="mb3 row">
@@ -56,5 +71,5 @@
     </div>
 
     
-    <input type="submit" value="{{action}}" class="btn btn-info">
+    <input type="submit" value="{{action}}" class="btn btn-info" [disabled]="formulario.invalid">
 </form>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Adopter } from 'src/app/models/adopter';
 import { Animal } from 'src/app/models/animals';
@@ -43,15 +43,15 @@ export class AdoptionFormComponent {
 
   constructor(private animalsService: AnimalsService, private adoptersService: AdoptersService, private router: Router, private route: ActivatedRoute) {
     this.formulario = new FormGroup({
-      name: new FormControl(),
-      surname: new FormControl(),
-      nif: new FormControl(),
-      phone: new FormControl(),
-      email: new FormControl(),
-      address: new FormControl(),
-      zip: new FormControl(),
-      city: new FormControl(),
-      state: new FormControl(),
+      name: new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
+      nif: new FormControl('', [Validators.required]),
+      phone: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      zip: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
     })
   }
 
@@ -77,11 +77,10 @@ export class AdoptionFormComponent {
   async onSubmit() {
     this.adopter = this.formulario.value;
     this.generatePDFAdoptionContract(this.adopter)
-    // console.log(this.adopter)
-    // await this.adoptersService.addAdopter(this.adopter)
-    // await this.adoptersService.addAdoption(this.adopter, this.animal)
-    // await this.animalsService.deleteAnimal(this.animal)
-    // this.router.navigate(['/animals']);
+    await this.adoptersService.addAdopter(this.adopter)
+    await this.adoptersService.addAdoption(this.adopter, this.animal)
+    await this.animalsService.deleteAnimal(this.animal)
+    this.router.navigate(['/animals']);
 
   }
 
@@ -116,10 +115,10 @@ export class AdoptionFormComponent {
               ['Name', 'Species', 'Nº chip', 'Nº pasaporte'],
               [this.animal.name, this.animal.species, this.animal.chip_number, this.animal.passport]
             ],
-            
+
           },
           layout: 'lightHorizontalLines',
-          margin: [0, 10, 0, 10]
+          margin: [150, 10, 0, 10]
         },
         { text: 'Cláusulas del contrato:', style: 'subheader' },
         {

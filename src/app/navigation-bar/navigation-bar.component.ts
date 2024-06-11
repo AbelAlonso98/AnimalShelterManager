@@ -15,7 +15,7 @@ export class NavigationBarComponent implements OnInit{
 
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService, private usersService: UsersService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit(){

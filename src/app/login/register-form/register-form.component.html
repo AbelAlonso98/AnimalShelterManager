@@ -1,32 +1,50 @@
 <h2>Registro de usuario</h2>
 <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label class="form-label">Name</label>
+        <label class="form-label">Name*</label>
         <input type="text" class="form-control" formControlName="name"/>
+        <div *ngIf="formReg.get('name')?.invalid && formReg.get('name')?.touched" class="text-danger">
+            Name is required.
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Surname</label>
+        <label class="form-label">Surname*</label>
         <input type="text" class="form-control" formControlName="surname"/>
+        <div *ngIf="formReg.get('surname')?.invalid && formReg.get('surname')?.touched" class="text-danger">
+            Surname is required.
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="text" class="form-control" formControlName="email"/>
+        <label class="form-label">Email*</label>
+        <input type="email" class="form-control" formControlName="email"/>
+        <div *ngIf="formReg.get('email')?.invalid && formReg.get('email')?.touched" class="text-danger">
+            Email is required.
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Password</label>
+        <label class="form-label">Password*</label>
         <input type="password" class="form-control" formControlName="password"/>
+        <div *ngIf="formReg.get('password')?.invalid && formReg.get('password')?.touched" class="text-danger">
+            Password is required.
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Role</label>
+        <label class="form-label">Role*</label>
         <select class="form-select" formControlName="role">
             <option value="cuidador">Cuidador</option>
             <option value="veterinario">Veterinario</option>
             <option value="admin">Admin</option>
         </select>
+        <div *ngIf="formReg.get('role')?.invalid && formReg.get('role')?.touched" class="text-danger">
+            Role is required.
+        </div>
     </div>
     <div class="mb-3" *ngIf="formReg.get('role')?.value === 'admin'">
-        <label class="form-label">Admin Password</label>
+        <label class="form-label">Admin Password*</label>
         <input type="password" class="form-control" formControlName="adminPassword"/>
+        <div *ngIf="formReg.get('adminPassword')?.invalid && formReg.get('adminPassword')?.touched" class="text-danger">
+            Admin Password is required.
+        </div>
     </div>
-    <input type="submit" value="Enviar" class="btn btn-info"/>
+    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="formReg.invalid"/>
 </form>

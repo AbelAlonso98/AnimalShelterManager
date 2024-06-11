@@ -1,0 +1,68 @@
+<div class="modal-backdrop" (click)="onClose()"></div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Vaccines for {{ animal.name }} ({{ animal.chip_number }})</h5>
+    <button type="button" class="btn-close ms-auto" aria-label="Close" (click)="onClose()"></button>
+  </div>
+  <div class="modal-body">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'vaccines'" (click)="setActiveTab('vaccines')">Vaccines</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeTab === 'desparasitations'"
+          (click)="setActiveTab('desparasitations')">Desparasitations</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" [class.show]="activeTab === 'vaccines'" [class.active]="activeTab === 'vaccines'">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Vaccine Type</th>
+              <th>Vaccine Date</th>
+              <th>Expiration Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vaccine of vaccines" [ngClass]="{'table-warning': isExpired(vaccine.expirationDate)}">
+              <td>{{ vaccine.vaccineType }}</td>
+              <td>{{ vaccine.vaccineDate }}</td>
+              <td>{{ vaccine.expirationDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-success w-100" [routerLink]="['/veterinary/vaccine', animal.id]">Add Vaccine</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" [class.show]="activeTab === 'desparasitations'"
+        [class.active]="activeTab === 'desparasitations'">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Desparasitation Type</th>
+              <th>Desparasitation Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let desparasitation of desparasitations">
+              <td>{{ desparasitation.desparasitationType }}</td>
+              <td>{{ desparasitation.desparasitationDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-success w-100" [routerLink]="['/veterinary/desparasitation', animal.id]">Add desparasitation</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+  </div>
+</div>

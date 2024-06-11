@@ -1,8 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Animal } from 'src/app/models/animals';
+import { Desparasitation } from 'src/app/models/desparasitation';
 import { Vaccine } from 'src/app/models/vaccine';
 import { AnimalsService } from 'src/app/services/animals.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { VeterinaryService } from 'src/app/services/veterinary.service';
+
 
 @Component({
   selector: 'app-animals-list',
@@ -12,13 +15,29 @@ import { VeterinaryService } from 'src/app/services/veterinary.service';
 export class AnimalsListComponent {
   animals: Animal[] = []
   vaccines: Vaccine[] = []
+  desparasitations: Desparasitation[] = []
+  selectedAnimal: Animal = {
+    name: "",
+    species: "",
+    chip_number: "",
+    kennel: '',
+    birth_date: new Date(),
+    entry_date: new Date(),
+    passport: '',
+    neutered: false,
+    ppp: false
+  }
 
   isCollapsed: boolean[] = []
+  isModalOpen: boolean = false
 
   @ViewChild('deleteToast') deleteToast: any;
-  @ViewChild('vetModal') vetModal: any;
 
-  constructor(private animalsService: AnimalsService, private veterinaryService: VeterinaryService) { }
+  constructor(
+    private animalsService: AnimalsService,
+    private veterinaryService: VeterinaryService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.animalsService.getAnimals().subscribe(animals => {
@@ -44,12 +63,24 @@ export class AnimalsListComponent {
     this.isCollapsed[index] = !this.isCollapsed[index];
   }
 
-  openModal(animalID: string) {
-    // this.vaccines = this.veterinaryService.getVaccinesByAnimalId(animalID)
-    this.vetModal.nativeElement.show();
+  openModal(animal: Animal) {
+    this.veterinaryService.getVaccinesByAnimalId(animal.chip_number).then(vaccines => {
+      this.veterinaryService.getDesparasitationsByAnimalId(animal.chip_number).then(desparasitations => {
+        this.selectedAnimal = animal;
+        this.desparasitations = desparasitations;
+        this.vaccines = vaccines;
+        this.isModalOpen = true;
+      })
+    }).catch(error => {
+      console.error('Error loading vaccines:', error)
+    })
   }
 
   closeModal() {
-    this.vetModal.nativeElement.hide();
+    this.isModalOpen = false;
+  }
+
+  get role(): string {
+    return this.authService.role;
   }
 }

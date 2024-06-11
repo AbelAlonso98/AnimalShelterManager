@@ -9,11 +9,12 @@ import { AuthService } from '../services/auth.service';
 })
 export class LandingPageComponent {
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) { }
+  constructor(private authService: AuthService) { }
 
-  
+  get role(): string {
+    return this.authService.role;
+  }
+
+
 
 }

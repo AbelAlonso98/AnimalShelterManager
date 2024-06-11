@@ -34,15 +34,6 @@ export class VeterinaryService {
     })
   }
 
-  getVaccine(id: String): Promise<Vaccine> {
-    const vaccineDocRef = doc(this.firestore, `vaccines/${id}`);
-    return getDoc(vaccineDocRef)
-      .then((docSnapshot) => {
-        const vaccineData = docSnapshot.data() as Vaccine;
-        return vaccineData;
-      })
-  }
-
   getVaccinesByAnimalId(animalId: string): Promise<Vaccine[]> {
     const vaccinesRef = collection(this.firestore, 'vaccines');
     const q = query(vaccinesRef, where('animal.chip_number', '==', animalId));
@@ -53,11 +44,30 @@ export class VeterinaryService {
         querySnapshot.forEach((doc) => {
           vaccines.push(doc.data() as Vaccine);
         });
+        console.log(vaccines)
         return vaccines;
       })
       .catch((error) => {
         console.error("Error getting vaccines: ", error);
         throw new Error("Error getting vaccines");
+      });
+  }
+
+  getDesparasitationsByAnimalId(animalId: string): Promise<Desparasitation[]> {
+    const vaccinesRef = collection(this.firestore, 'desparasitations');
+    const q = query(vaccinesRef, where('animal.chip_number', '==', animalId));
+    
+    return getDocs(q)
+      .then((querySnapshot) => {
+        const desparasitations: Desparasitation[] = [];
+        querySnapshot.forEach((doc) => {
+          desparasitations.push(doc.data() as Desparasitation);
+        });
+        return desparasitations;
+      })
+      .catch((error) => {
+        console.error("Error getting desparasitations: ", error);
+        throw new Error("Error getting desparasitations");
       });
   }
 

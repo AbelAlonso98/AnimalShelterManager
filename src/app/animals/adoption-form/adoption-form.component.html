@@ -17,45 +17,72 @@
         <div class="col-4">
             <label class="form-label">Name</label>
             <input type="text" class="form-control" formControlName="name">
+            <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched" class="text-danger">
+                Name is required.
+            </div>
         </div>
         <div class="col-4">
-            <label class="form-label">Surname</label>
+            <label class="form-label">Surname*</label>
             <input type="text" class="form-control" formControlName="surname">
+            <div *ngIf="formulario.get('surname')?.invalid && formulario.get('surname')?.touched" class="text-danger">
+                Surname is required.
+            </div>
         </div>
         <div class="col-4">
-            <label class="form-label">NIF</label>
+            <label class="form-label">NIF*</label>
             <input type="text" class="form-control" formControlName="nif">
+            <div *ngIf="formulario.get('nif')?.invalid && formulario.get('nif')?.touched" class="text-danger">
+                NIF is required.
+            </div>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-6">
-            <label class="form-label">Phone</label>
+            <label class="form-label">Phone*</label>
             <input type="text" class="form-control" formControlName="phone">
+            <div *ngIf="formulario.get('phone')?.invalid && formulario.get('phone')?.touched" class="text-danger">
+                Phone is required.
+            </div>
         </div>
         <div class="col-6">
-            <label class="form-label">Email</label>
+            <label class="form-label">Email*</label>
             <input type="email" class="form-control" formControlName="email">
+            <div *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched" class="text-danger">
+                Email is required.
+            </div>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-12">
-            <label class="form-label">Address</label>
+            <label class="form-label">Address*</label>
             <input type="text" class="form-control" formControlName="address">
+            <div *ngIf="formulario.get('address')?.invalid && formulario.get('address')?.touched" class="text-danger">
+                Address is required.
+            </div>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-4">
-            <label class="form-label">City</label>
+            <label class="form-label">City*</label>
             <input type="text" class="form-control" formControlName="city">
+            <div *ngIf="formulario.get('city')?.invalid && formulario.get('city')?.touched" class="text-danger">
+                City is required.
+            </div>
         </div>
         <div class="col-4">
-            <label class="form-label">Zip</label>
+            <label class="form-label">Zip*</label>
             <input type="text" class="form-control" formControlName="zip">
+            <div *ngIf="formulario.get('zip')?.invalid && formulario.get('zip')?.touched" class="text-danger">
+                Zip is required.
+            </div>
         </div>
         <div class="col-4">
-            <label class="form-label">State</label>
-            <input type="email" class="form-control" formControlName="state">
+            <label class="form-label">State*</label>
+            <input type="text" class="form-control" formControlName="state">
+            <div *ngIf="formulario.get('state')?.invalid && formulario.get('state')?.touched" class="text-danger">
+                State is required.
+            </div>
         </div>
     </div>
-    <input type="submit" value="Adopt" class="btn btn-info">
+    <input type="submit" value="Adopt" class="btn btn-info" [disabled]="formulario.invalid">
 </form>

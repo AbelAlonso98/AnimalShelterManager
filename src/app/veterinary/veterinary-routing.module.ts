@@ -9,7 +9,9 @@ const routes: Routes = [
     path: '', component: VetMenuComponent,
     children: [
       { path: 'vaccine', component: VaccineComponent },
+      { path: 'vaccine/:id', component: VaccineComponent },
       { path: 'desparasitation', component: DesparasitationComponent },
+      { path: 'desparasitation/:id', component: DesparasitationComponent },
     ]
   },
 

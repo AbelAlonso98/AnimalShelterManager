@@ -1,7 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DocumentData } from 'firebase/firestore';
 import { Animal } from 'src/app/models/animals';
 import { AnimalsService } from 'src/app/services/animals.service';
 
@@ -31,12 +30,12 @@ export class AnimalsFormComponent {
 
   constructor(private animalsService: AnimalsService, private router: Router, private route: ActivatedRoute) {
     this.formulario = new FormGroup({
-      name: new FormControl(),
-      species: new FormControl(),
-      chip_number: new FormControl(),
+      name: new FormControl('', [Validators.required]),
+      species: new FormControl('', [Validators.required]),
+      chip_number: new FormControl('', [Validators.required]),
       kennel: new FormControl(),
-      birth_date: new FormControl(),
-      entry_date: new FormControl(),
+      birth_date: new FormControl('', [Validators.required]),
+      entry_date: new FormControl('', [Validators.required]),
       passport: new FormControl(),
       neutered: new FormControl(),
       ppp: new FormControl(),

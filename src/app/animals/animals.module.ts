@@ -8,6 +8,7 @@ import { AnimalsListRowComponent } from './animals-list-row/animals-list-row.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdoptionFormComponent } from './adoption-form/adoption-form.component';
 import { AdoptionListComponent } from './adoption-list/adoption-list.component';
+import { AnimalVetModalComponent } from './animal-vet-modal/animal-vet-modal.component'
 
 
 @NgModule({
@@ -17,13 +18,14 @@ import { AdoptionListComponent } from './adoption-list/adoption-list.component';
     AnimalsListRowComponent,
     AdoptionFormComponent,
     AdoptionListComponent,
+    AnimalVetModalComponent,
   ],
   imports: [
     CommonModule,
     AnimalsRoutingModule,
     ReactiveFormsModule
-    ],
-  exports:[
+  ],
+  exports: [
     AnimalsListComponent
   ]
 })

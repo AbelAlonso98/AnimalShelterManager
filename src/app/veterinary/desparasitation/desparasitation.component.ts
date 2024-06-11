@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Animal } from 'src/app/models/animals';
 import { Desparasitation } from 'src/app/models/desparasitation';
@@ -14,6 +14,8 @@ export class DesparasitationComponent {
   animals: Animal[] = [];
   desparasitationType: string[] = ["Internal", "External", "Both", "Intensive"];
   formulario: FormGroup;
+
+  @ViewChild('confirmationToast') confirmationToast: any;
 
   constructor(private animalsService: AnimalsService, private veterinaryService: VeterinaryService) {
     this.formulario = new FormGroup({
@@ -36,7 +38,12 @@ export class DesparasitationComponent {
       animal: this.formulario.value.animal,
       desparasitationType: this.formulario.value.desparasitationType,
       desparasitationDate: this.formulario.value.desparasitationDate
-    }
-    this.veterinaryService.addDesparasitation(desparasitation)
+    };
+    this.veterinaryService.addDesparasitation(desparasitation);
+    this.formulario.reset();
+    this.confirmationToast.nativeElement.classList.add('show');
+      setTimeout(() => {
+        this.confirmationToast.nativeElement.classList.remove('show');
+      }, 3000);
   }
 }
