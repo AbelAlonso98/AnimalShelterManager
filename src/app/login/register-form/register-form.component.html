@@ -1,4 +1,4 @@
-<h2>Registro de usuario</h2>
+<h2 class="text-center">User register</h2>
 <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label class="form-label">Name*</label>
@@ -46,5 +46,5 @@
             Admin Password is required.
         </div>
     </div>
-    <input type="submit" value="Enviar" class="btn btn-info" [disabled]="formReg.invalid"/>
+    <input type="submit" value="REGISTER" class="btn btn-info" [disabled]="formReg.invalid"/>
 </form>
